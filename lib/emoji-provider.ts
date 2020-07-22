@@ -1,7 +1,10 @@
+'use babel'
 import * as fs from 'fs';
 import * as path from 'path';
-import * as fuzzaldrin from 'fuzzaldrin';
-import * as emoji from 'emoji-images';
+import fuzzaldrin from 'fuzzaldrin';
+import emoji from 'emoji-images';
+import { Result } from './index';
+import CodeMirror from 'codemirror';
 
 module.exports = {
 	selector: '.source.gfm, .text.md, .text.restructuredtext, .text.html, .text.slim, .text.plain, .text.git-commit, .comment, .string, .source.emojicode',
