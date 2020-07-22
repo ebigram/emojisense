@@ -6,24 +6,28 @@ import emoji from 'emoji-images';
 import { Result } from './index';
 import CodeMirror from 'codemirror';
 
-module.exports = {
-	selector: '.source.gfm, .text.md, .text.restructuredtext, .text.html, .text.slim, .text.plain, .text.git-commit, .comment, .string, .source.emojicode',
 
-	wordRegex: /::?[\w\d_\+-]+$/,
-	emojiFolder: 'node_modules/emoji-images/pngs',
-	properties: {},
-	keys: [],
+export class EmojiProvider {
+	wordRegex = /::?[\w\d_\+-]+$/;
+
+	//@ts-ignore
+	packagePath = inkdrop.packages.getActivePackage('inkdrop-emojisense').path;;
+	emojiFolder = this.packagePath + '/node_modules/emoji-images/pngs';
+	properties = {};
+	keys = [];
 
 	loadProperties() {
 		return fs.readFile(path.resolve(__dirname, '..', 'properties.json'), (error: any, content: any) => {
 			if (error) { return; }
-
 			this.properties = JSON.parse(content);
+			//@ts-ignore
+			this.packagePath = inkdrop.packages.getActivePackage('inkdrop-emojisense').path;
+			console.log('packagePath: ' + this.packagePath);
 			return this.keys = Object.keys(this.properties);
 		});
-	},
+	};
 
-	getSuggestions(editor: CodeMirror.Editor) {
+	getSuggestions(editor: CodeMirror.Editor): Result[] {
 		let replacementPrefix: string;
 		let prefix = this.getPrefix(editor);
 		if (!((prefix != null ? prefix.length : Number) >= 2)) { return []; }
@@ -39,30 +43,28 @@ module.exports = {
 		const markdownEmojis = this.getMarkdownEmojiSuggestions(prefix, replacementPrefix);
 
 		return unicodeEmojis.concat(markdownEmojis);
-	},
+	};
 
-	getPrefix(cm: CodeMirror.Editor): string[] {
+	getPrefix(cm: CodeMirror.Editor): string {
 		const cursor = cm.getCursor();
-		const token = cm.getTokenAt(cursor);
-		const start = token.start;
-		const end = cursor.ch;
-		const line = cursor.line;
-		const currentWord = token.string;
-		return currentWord.match(this.wordRegex);
+		const token = cm.getTokenAt(cursor, true);
+		const currentWord = `:${token.string}`; //prepend ':'
+		const regexMatch = currentWord.match(this.wordRegex);
+		const match = regexMatch ? regexMatch[0] : ':';
+		return match;
+	};
 
-	},
-
-	getUnicodeEmojiSuggestions(prefix: { slice: (arg0: number) => any; }) {
+	getUnicodeEmojiSuggestions(prefix: string): Result[] {
 		const words = fuzzaldrin.filter(this.keys, prefix.slice(1));
-		return Array.from(words).map((word: string | number) => (
+		return Array.from(words).map((word: string) => (
 			{
 				text: this.properties[word].emoji,
 				replacementPrefix: prefix,
 				rightLabel: word
 			}));
-	},
+	};
 
-	getMarkdownEmojiSuggestions(prefix: any, replacementPrefix: any) {
+	getMarkdownEmojiSuggestions(prefix: string, replacementPrefix: string): Result[] {
 		const words = fuzzaldrin.filter(emoji.list, prefix);
 		return (() => {
 			const result = [];
@@ -74,12 +76,12 @@ module.exports = {
 				}
 
 				result.push({
-					text: word,
+					text: emojiImageElement,
 					replacementPrefix: replacementPrefix || prefix,
-					rightLabelHTML: emojiImageElement
+					rightLabel: emojiImageElement
 				});
 			}
 			return result;
 		})();
-	}
-};
+	};
+}
