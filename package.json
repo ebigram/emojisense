@@ -1,7 +1,7 @@
 {
 	"name": "inkdrop-emojisense",
 	"main": "./lib/emojisense.js",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"description": "A simple markdown emoji autocompleter inspired by atom/autocomplete-emojis",
 	"keywords": [
 		"makrdown",
