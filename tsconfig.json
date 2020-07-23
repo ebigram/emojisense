@@ -17,13 +17,15 @@
         "resolveJsonModule": true,
         "checkJs": true,
         "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react"
+        "noEmit": false,
+        "jsx": "react",
+        "listEmittedFiles": true
     },
     "include": [
         "lib"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "lib/emojisense.js"
     ]
 }
