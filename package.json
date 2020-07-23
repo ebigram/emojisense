@@ -17,7 +17,7 @@
 		"react": "^16.13.1",
 		"react-dom": "16.13.1"
 	},
-	"repository": "https://github.com/ebigram/emojisense",
+	"repository": "https://github.com/ebigram/inkdrop-emojisense",
 	"license": "MIT",
 	"engines": {
 		"inkdrop": "^4.x"
