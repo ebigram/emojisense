@@ -1,5 +1,5 @@
 {
-	"name": "inkdrop-emojisense",
+	"name": "emojisense",
 	"main": "./lib/emojisense.js",
 	"version": "0.0.0",
 	"description": "A simple markdown emoji autocompleter inspired by atom/autocomplete-emojis",
@@ -17,7 +17,7 @@
 		"react": "^16.13.1",
 		"react-dom": "16.13.1"
 	},
-	"repository": "https://github.com/ebigram/inkdrop-emojisense",
+	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
 	"engines": {
 		"inkdrop": "^4.x"
