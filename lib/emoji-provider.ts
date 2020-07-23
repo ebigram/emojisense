@@ -1,10 +1,9 @@
 'use babel'
 import * as fs from 'fs';
 import * as path from 'path';
-import fuzzaldrin from 'fuzzaldrin';
+import * as fuzzaldrin from 'fuzzaldrin';
+import * as CodeMirror from 'codemirror';
 import { Result } from './index';
-import CodeMirror from 'codemirror';
-
 
 export class EmojiProvider {
 	wordRegex = /::?[\w\d_\+-]+$/;
