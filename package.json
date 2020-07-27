@@ -13,12 +13,10 @@
 		"autocomplete"
 	],
 	"dependencies": {
-		"electron": "9.1.0",
 		"emoji-images": "^0.1.1",
-		"event-kit": "^2.5.3",
 		"fuzzaldrin": "^2.1.0",
 		"react": "^16.13.1",
-		"react-dom": "16.13.1"
+		"react-dom": "^16.13.1"
 	},
 	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
@@ -26,8 +24,7 @@
 		"inkdrop": "^4.x"
 	},
 	"devDependencies": {
-		"@types/electron": "^1.6.10",
-		"@babel/cli": "^7.10.5",
+		"electron": "9.1.0",
 		"@babel/core": "^7.10.5",
 		"@babel/preset-flow": "^7.10.4",
 		"@types/codemirror": "0.0.97",
