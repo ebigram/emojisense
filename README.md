@@ -4,6 +4,7 @@ Just simple plugin that provides autocompletion for emojis. To try it out just i
 ![usage](./emojisense-usage.gif)
 
 ## Limitations
+:rotating_light: *NOTE: his is an alpha release and might still be very buggy. Your mileage may vary.* :rotating_light:
 Emojisense currently only works inside the main editor, future versions will support title and tags. This plug-in also only currently supports unicode emojis, future versions will support other flavors as well.
 
 ## Roadmap

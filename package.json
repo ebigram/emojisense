@@ -2,7 +2,7 @@
 	"name": "emojisense",
 	"main": "./lib/emojisense.js",
 	"version": "0.2.1",
-	"description": "A simple markdown emoji autocompleter inspired by atom/autocomplete-emojis",
+	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"prepare": "tsc"
 	},
