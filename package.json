@@ -4,7 +4,7 @@
 	"version": "0.2.4",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
-		"prepare": "tsc"
+		"prepare": "tsc --module commonjs"
 	},
 	"keywords": [
 		"makrdown",
