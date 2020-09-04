@@ -3,15 +3,13 @@
 const app = require('electron').remote.app;
 const modulePath = app.getAppPath() + '/node_modules/';
 require(modulePath + 'codemirror/addon/hint/show-hint');
-import { Result } from './index';
 import {
     EmojiProvider
-} from './emoji-provider';
+} from './EmojiProvider';
 /**@typedef {import('codemirror/addon/hint/show-hint')} */
 
 
-module.exports = {
-    activate() {
+    export function activate() {
         // @ts-ignore
         const appDisposable = global.inkdrop.onAppReady(() => {
             // @ts-ignore
@@ -20,10 +18,10 @@ module.exports = {
         }
         );
         appDisposable.dispose();
-    },
+    }
 
     // @ts-ignore
-    deactivate: function () {
+    export function deactivate() {
         /** @type {CodeMirror.Editor} editor **/
         // @ts-ignore
         const editor = global.inkdrop.getActiveEditor();
@@ -32,13 +30,13 @@ module.exports = {
             });
         }
         // @ts-ignore
-    },
+    }
 
 
     /**
      * @param {{ cm: CodeMirror.Editor; }} editor
      */
-    handleEditorDidLoad(editor) {
+   export function handleEditorDidLoad(editor) {
        /**@type { typeof CodeMirror} codeMirror */
         const codeMirror = global.CodeMirror;
         /** @type {CodeMirror.Editor} cm */
@@ -84,7 +82,6 @@ module.exports = {
     }
 
     // @ts-ignore
-};
 /**@param {Result[]} list 
  * @param {CodeMirror.Position} textCursor
  * @returns {CodeMirror.Hint[]} 

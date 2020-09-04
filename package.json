@@ -1,6 +1,6 @@
 {
 	"name": "emojisense",
-	"main": "./lib/emojisense.js",
+	"main": "./src/emojisense.js",
 	"version": "0.2.4",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
