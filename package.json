@@ -19,7 +19,7 @@
 	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
 	"engines": {
-		"inkdrop": "^4.x"
+		"inkdrop": "^5.x"
 	},
 	"devDependencies": {
 		"electron": "9.1.0",
