@@ -1,36 +1,50 @@
 'use babel';
-import CodeMirror from 'codemirror';
+
 const app = require('electron').remote.app;
 const modulePath = app.getAppPath() + '/node_modules/';
-require(`${modulePath}codemirror/addon/hint/show-hint`);
-require('codemirror/addon/hint/show-hint');
+require(modulePath + 'codemirror/addon/hint/show-hint');
 import {
     EmojiProvider
-} from './emoji-provider';
+} from './EmojiProvider';
+/**@typedef {import('codemirror/addon/hint/show-hint')} */
 
 
-module.exports = {
-    activate() {
+    export function activate() {
         // @ts-ignore
-        global.inkdrop.onEditorLoad(this.handleEditorDidLoad.bind(this));
-    },
+        const appDisposable = global.inkdrop.onAppReady(() => {
+            // @ts-ignore
+            const editorDisposable = global.inkdrop.onEditorLoad(this.handleEditorDidLoad.bind(this));
+            editorDisposable.dispose();
+        }
+        );
+        appDisposable.dispose();
+    }
 
-    deactivate: function () {
+    // @ts-ignore
+    export function deactivate() {
         /** @type {CodeMirror.Editor} editor **/
+        // @ts-ignore
         const editor = global.inkdrop.getActiveEditor();
         if (editor) {
             editor.off(':', () => {
             });
         }
-    },
+        // @ts-ignore
+    }
 
 
-    handleEditorDidLoad(editor) {
+    /**
+     * @param {{ cm: CodeMirror.Editor; }} editor
+     */
+   export function handleEditorDidLoad(editor) {
+       /**@type { typeof CodeMirror} codeMirror */
+        const codeMirror = global.CodeMirror;
         /** @type {CodeMirror.Editor} cm */
         const cm = editor.cm;
         const ep = new EmojiProvider();
         ep.loadProperties();
 
+         
 
         const complete = function () {
             const cursor = cm.getCursor();
@@ -42,8 +56,8 @@ module.exports = {
             const results = ep.getSuggestions(cm);
             return {
                 list: results.length ? createHints(results, cursor) : [],
-                from: CodeMirror.Pos(line, start),
-                to: CodeMirror.Pos(line, end),
+                from: codeMirror.Pos(line, start),
+                to: codeMirror.Pos(line, end),
             };
         };
 
@@ -62,23 +76,24 @@ module.exports = {
         // @ts-ignore
         inkdrop.commands.add(document.body, {
             'user:autocomplete': () => {
-                CodeMirror.showHint(cm, complete);
+                codeMirror.showHint(cm, complete);
             }
         });
     }
 
-};
+    // @ts-ignore
 /**@param {Result[]} list 
  * @param {CodeMirror.Position} textCursor
  * @returns {CodeMirror.Hint[]} 
 */
 function createHints(list, textCursor) {
+    // @ts-ignore
     const hints = list.map((elem, idx, arr) => ({
 
         text: elem.text,
         displayText: `${elem.text} ${elem.rightLabel}`,
         /**@param {HTMLLIElement} e 
-        @param {CodeMirror.Hint} cur */
+        @param {codeMirror.Hint} cur */
         //render: (e, data, cur) => { e.appendChild(cur.); }
         //from?: Position;
         /** Called if a completion is picked. If provided *you* are responsible for applying the completion */
@@ -86,6 +101,7 @@ function createHints(list, textCursor) {
          * @param {CodeMirror.Hints} data
          * @param {CodeMirror.Hint} cur
         */
+        // @ts-ignore
         hint: (cm, data, cur) => {
             /**@type {CodeMirror.Token} token*/
             const token = cm.getTokenAt(textCursor);

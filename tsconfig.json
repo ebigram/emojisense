@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es2015",
         "lib": [
             "dom",
             "dom.iterable",
@@ -12,7 +12,7 @@
         "allowSyntheticDefaultImports": true,
         "strict": false,
         "forceConsistentCasingInFileNames": true,
-        "module": "es6",
+        "module": "es2015",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "checkJs": true,
@@ -22,10 +22,10 @@
         "listEmittedFiles": true
     },
     "include": [
-        "lib"
+        "src"
     ],
     "exclude": [
         "node_modules",
-        "lib/emojisense.js"
+        "src/emojisense.js"
     ]
 }
