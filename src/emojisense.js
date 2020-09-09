@@ -1,6 +1,6 @@
 'use babel';
 
-const app = require('electron').remote.app;
+const app = require('electron').remote.app; //cc:remember place
 const modulePath = app.getAppPath() + '/node_modules/';
 require(modulePath + 'codemirror/addon/hint/show-hint');
 import {

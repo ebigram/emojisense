@@ -1,5 +1,5 @@
 import * as emoji from 'emoji-images';
-import { EmojiProvider } from './emoji-provider';
+import { EmojiProvider } from "./EmojiProvider";
 declare module Emoji {
   class EmojiProvider {
     loadProperties(): void;
