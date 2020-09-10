@@ -18,6 +18,7 @@
 	},
 	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
+	"type":"module",
 	"engines": {
 		"inkdrop": "^5.x"
 	},
