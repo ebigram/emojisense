@@ -1,7 +1,7 @@
 {
 	"name": "emojisense",
 	"main": "./src/emojisense.js",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"prepare": "tsc --module commonjs"
@@ -18,7 +18,7 @@
 	},
 	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
-	"type":"module",
+	"type": "module",
 	"engines": {
 		"inkdrop": "^5.x"
 	},
