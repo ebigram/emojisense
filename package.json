@@ -1,10 +1,11 @@
 {
 	"name": "emojisense",
-	"main": "./src/emojisense.js",
+	"main": "./lib/emojisense.js",
 	"version": "0.2.6",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
-		"prepare": "tsc --module commonjs"
+		"build": "babel src/ -d lib/",
+		"dev": "babel src/ -s -d lib/ --watch"
 	},
 	"keywords": [
 		"makrdown",
