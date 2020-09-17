@@ -1,7 +1,7 @@
 {
 	"name": "emojisense",
 	"main": "./lib/emojisense",
-	"version": "0.3.1",
+	"version": "0.4.0",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"build": "babel src/ -d lib/",
@@ -30,7 +30,7 @@
 		"@babel/plugin-proposal-class-properties": "^7.8.3",
 		"@babel/preset-env": "^7.9.5",
 		"@babel/preset-react": "^7.9.4",
-		"@types/codemirror" : "0.0.98",
+		"@types/codemirror": "0.0.98",
 		"@types/fuzzaldrin": "^2.1.2",
 		"@types/node": "^14.10.3",
 		"babel-eslint": "^10.1.0",
