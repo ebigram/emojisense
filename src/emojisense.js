@@ -1,12 +1,23 @@
+"use strict";
 "use babel";
+
+var _eventKit = require("event-kit");
+
 const CodeMirror = require("codemirror");
-import { CompositeDisposable, Disposable } from "event-kit";
+
 const app = require("electron").remote.app;
+
 const modulePath = app.getAppPath() + "/node_modules/";
-require(modulePath + "codemirror/addon/hint/show-hint");
-//require("codemirror/addon/hint/show-hint")
-const { EmojiProvider } = require("./EmojiProvider");
+
+require(modulePath + "codemirror/addon/hint/show-hint"); //require("codemirror/addon/hint/show-hint")
+
+
+const {
+  EmojiProvider
+} = require("./EmojiProvider");
+
 const R = require("ramda");
+
 class EmojiSense {
   constructor() {
     this.ep = new EmojiProvider();
@@ -14,8 +25,8 @@ class EmojiSense {
 
   activate() {
     this.ep.loadProperties();
-    this.disposables = new CompositeDisposable();
-    //console.log("activate")
+    this.disposables = new _eventKit.CompositeDisposable(); //console.log("activate")
+
     const editoHandler = R.curry(this.handleEditorDidLoad)(this.ep);
     global.inkdrop.onEditorLoad(editoHandler.bind(this));
   }
@@ -23,38 +34,39 @@ class EmojiSense {
   deactivate() {
     /** @type {CodeMirror.Editor} editor **/
     const editor = inkdrop.getActiveEditor();
+
     if (this.disposables) {
       this.disposables.dispose();
     }
   }
-
   /**
    * @param {{ cm: CodeMirror.Editor }} editor
    */
+
+
   handleEditorDidLoad(ep, editor) {
-    const { cm } = editor;
-    //console.log("editor loaded")
+    const {
+      cm
+    } = editor; //console.log("editor loaded")
+
     const handleCompletor = R.curry(this.handleComplete)(ep);
     cm.on("keyup", (cmEditor, event) => {
-      if (
-        !cmEditor.state.completionActive &&
-        ((event.keyCode > 37 && event.keyCode < 91) ||
-          event.keyCode ===
-            186) /*Enables keyboard navigation in autocomplete list*/
+      if (!cmEditor.state.completionActive && 
+        event.keyCode != 13 && //Enter
+        (event.keyCode > 37 && event.keyCode < 91 || event.keyCode === 186)
+      /*Enables keyboard navigation in autocomplete list*/
       ) {
-        const cursor = cmEditor.getCursor();
-        const token = cmEditor.getTokenAt(cursor);
-        /*Enter - do not open autocomplete list just after item has been selected in it*/
+          const cursor = cmEditor.getCursor();
+          const token = cmEditor.getTokenAt(cursor);
+          /*Enter - do not open autocomplete list just after item has been selected in it*/
 
-        console.log(token.string);
-        if (token.string.startsWith(":"))
-          codeMirror.showHint({
+          if (token.string.startsWith(":")) codeMirror.showHint({
             cmEditor,
             hint: handleCompletor,
-            completeSingle: false,
-            //closeCharacters: /\ \/>/
+            completeSingle: false //closeCharacters: /\ \/>/
+
           });
-      } else return CodeMirror.Pass;
+        } else return CodeMirror.Pass;
     });
   }
 
@@ -68,11 +80,14 @@ class EmojiSense {
       const hints = list.map((elem, idx, arr) => ({
         text: elem.text,
         displayText: `${elem.text} ${elem.rightLabel}`,
+
         /**@param {HTMLLIElement} e 
                         @param {CodeMirror.Hint} cur */
         //render: (e, data, cur) => { e.appendChild(cur.) }
         //from?: Position
+
         /** Called if a completion is picked. If provided *you* are responsible for applying the completion */
+
         /**@param {CodeMirror.Editor} cm
          * @param {CodeMirror.Hints} data
          * @param {CodeMirror.Hint} cur
@@ -81,14 +96,16 @@ class EmojiSense {
           /**@type {CodeMirror.Token} token*/
           const token = cm.getTokenAt(textCursor);
           const line = textCursor.line;
-          cm.getDoc().replaceRange(
-            cur.text,
-            { line: line, ch: token.start - 1 },
-            { line: line, ch: token.end }
-          );
-        },
-        //render?: (element: HTMLLIElement, data: Hints, cur: Hint) => void
+          cm.getDoc().replaceRange(cur.text, {
+            line: line,
+            ch: token.start - 1
+          }, {
+            line: line,
+            ch: token.end
+          });
+        } //render?: (element: HTMLLIElement, data: Hints, cur: Hint) => void
         //to?: Position
+
       }));
       return hints;
     }
@@ -97,15 +114,17 @@ class EmojiSense {
     const token = cm.getTokenAt(cursor);
     const start = token.start;
     const end = cursor.ch;
-    const line = cursor.line;
-    //console.log("complete")
-    const results = ep.getSuggestions(cm);
-    //console.log(results)
+    const line = cursor.line; //console.log("complete")
+
+    const results = ep.getSuggestions(cm); //console.log(results)
+
     return {
       list: results.length ? createHints(results, cursor) : [],
       from: CodeMirror.Pos(line, start),
-      to: CodeMirror.Pos(line, end),
+      to: CodeMirror.Pos(line, end)
     };
   }
+
 }
+
 module.exports = new EmojiSense();
