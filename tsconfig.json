@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es2015",
+        "target": "es6",
         "lib": [
             "dom",
             "dom.iterable",
@@ -12,7 +12,7 @@
         "allowSyntheticDefaultImports": true,
         "strict": false,
         "forceConsistentCasingInFileNames": true,
-        "module": "es2015",
+        "module": "es6",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "checkJs": true,
