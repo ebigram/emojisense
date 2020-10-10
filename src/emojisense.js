@@ -1,7 +1,7 @@
 "use strict";
 "use babel";
 
-var _eventKit = require("event-kit");
+const _eventKit = require("event-kit");
 
 const CodeMirror = require("codemirror");
 
