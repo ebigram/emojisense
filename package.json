@@ -13,9 +13,10 @@
 		"autocomplete"
 	],
 	"dependencies": {
+		"codemirror": "^5.56.0",
 		"emoji-images": "^0.1.1",
 		"fuzzaldrin": "^2.1.0",
-		"codemirror": "^5.56.0"
+		"tinykeys": "^1.1.1"
 	},
 	"repository": "https://github.com/ebigram/emojisense",
 	"license": "MIT",
