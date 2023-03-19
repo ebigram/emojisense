@@ -20,7 +20,8 @@
 		"inkdrop": "^5.x"
 	},
 	"dependencies": {
-		"fuzzaldrin": "^2.1.0"
+		"fuzzaldrin": "^2.1.0",
+		"ramda": "^0.28.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.8.4",
@@ -37,7 +38,6 @@
 		"eslint-plugin-prettier": "^3.1.2",
 		"eslint-plugin-react": "^7.19.0",
 		"event-kit": "^2.5.3",
-		"prettier": "^2.0.4",
-		"ramda": "^0.28.0"
+		"prettier": "^2.0.4"
 	}
 }
