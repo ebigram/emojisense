@@ -1,0 +1,45 @@
+{
+	"name": "emojisense",
+	"main": "./lib/emojisense",
+	"version": "0.4.1",
+	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
+	"scripts": {
+		"build": "babel src/ -d lib/",
+		"dev": "babel src/ -s -d lib/ --watch"
+	},
+	"keywords": [
+		"makrdown",
+		"emoji",
+		"intellisense",
+		"autocomplete"
+	],
+	"dependencies": {
+		"emoji-images": "^0.1.1",
+		"fuzzaldrin": "^2.1.0",
+		"ramda": "^0.27.1"
+	},
+	"repository": "git@github.com:ebigram/emojisense",
+	"license": "MIT",
+	"styles": "styles/emojisense.less",
+	"engines": {
+		"inkdrop": "^5.x"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.9.0",
+		"@babel/plugin-proposal-class-properties": "^7.8.3",
+		"@babel/preset-env": "^7.9.5",
+		"@babel/preset-react": "^7.9.4",
+		"@types/codemirror": "0.0.98",
+		"@types/fuzzaldrin": "^2.1.2",
+		"@types/node": "^14.10.3",
+		"babel-eslint": "^10.1.0",
+		"babel-plugin-ramda": "^2.0.0",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-react": "^7.19.0",
+		"event-kit": "^2.5.3",
+		"prettier": "^2.0.4"
+	}
+}

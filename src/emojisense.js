@@ -5,7 +5,7 @@ const _eventKit = require("event-kit");
 
 const CodeMirror = require("codemirror");
 
-const app = require("electron").remote.app;
+const app = require("@electron/remote").app;
 
 const modulePath = app.getAppPath() + "/node_modules/";
 
@@ -66,7 +66,7 @@ class EmojiSense {
                     completeSingle: false //closeCharacters: /\ \/>/
                 });
             } else return CodeMirror.Pass;
-            event.preventDefault();
+            //event.preventDefault();
         }, true);
     }
 
