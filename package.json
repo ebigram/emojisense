@@ -1,7 +1,7 @@
 {
 	"name": "emojisense",
 	"main": "./lib/emojisense",
-	"version": "0.4.6",
+	"version": "0.4.7",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"build": "babel src/ -d lib/",
@@ -33,8 +33,6 @@
 		"eslint-config-prettier": "^6.10.1",
 		"eslint-plugin-prettier": "^3.1.2",
 		"eslint-plugin-react": "^7.19.0",
-		"event-kit": "^2.5.3",
-		"babel-plugin-ramda": "^2.0.0",
 		"event-kit": "^2.5.3",
 		"@types/fuzzaldrin": "^2.1.2",
 		"prettier": "^2.0.4"
