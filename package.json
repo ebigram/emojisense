@@ -1,7 +1,7 @@
 {
 	"name": "emojisense",
 	"main": "./lib/emojisense",
-	"version": "0.4.10",
+	"version": "0.4.11",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"build": "babel src/ -d lib/",
