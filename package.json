@@ -1,7 +1,7 @@
 {
 	"name": "emojisense",
 	"main": "./lib/emojisense",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"description": "A simple markdown emoji autocompleter inspired by VSCode's :emojisense:",
 	"scripts": {
 		"build": "babel src/ -d lib/",
@@ -14,20 +14,14 @@
 		"autocomplete"
 	],
 	"dependencies": {
-		"emoji-images": "^0.1.1",
-		"fuzzaldrin": "^2.1.0",
-		"ramda": "^0.27.1"
+		"babel-plugin-ramda": "^2.0.0",
+		"event-kit": "^2.5.3"
 	},
 	"repository": "git@github.com:ebigram/emojisense",
 	"license": "MIT",
 	"styles": "styles/emojisense.less",
 	"engines": {
 		"inkdrop": "^5.x"
-	},
-	"dependencies": {
-		"babel-plugin-ramda": "^2.0.0",
-		"event-kit": "^2.5.3"
-
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.8.4",
